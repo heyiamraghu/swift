@@ -77,3 +77,19 @@ if let dictIndex = heights.index(forKey: "Sachin") {
     heights.remove(at: dictIndex)
     print(heights)
 }
+
+
+var actors = Set([
+    "Denzel",
+    "Tom",
+    "Cage",
+    "Samuel"
+])
+
+print(actors)
+actors.insert("Denzel Washington")
+actors.insert("Tom Cruise")
+print(actors)
+
+actors.contains("Tom")
+let sortedSet = actors.sorted()
