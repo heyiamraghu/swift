@@ -4,13 +4,13 @@ var greeting = "Hello, playground"
 
 //Closures
 
-func greetUser() -> String {
-    "Hi"
-}
+//func greetUser() -> String {
+//    "Hi"
+//}
 
-greetUser()
-var greetCopy: () -> String = greetUser
-greetCopy()
+//greetUser()
+//var greetCopy: () -> String = greetUser
+//greetCopy()
 
 let sayHello = { (name: String) -> String in
     "Hi \(name)"
@@ -95,3 +95,125 @@ func sayIt() -> (String) -> Void {
 
 let greetings = sayIt()
 greetings("Subha")
+
+
+var team = ["Raja", "Guna", "Selva", "Raghu"]
+team.sorted()
+
+let captainFirst = team.sorted { name1, name2 in
+    if name1 == "Raja" {
+        return true
+    } else if name2 == "Raja" {
+        return false
+    }
+    return name1 < name2
+}
+
+print(captainFirst)
+
+let sayHello1 = { (name: String) -> String in
+    "Hi \(name)"
+}
+sayHello1("Raghu")
+
+func greetUser() {
+    print("hi there")
+}
+var greetCopy = greetUser
+
+
+var flyDrone = { (hasPermit: Bool) -> Bool in
+    if hasPermit {
+        print("Let's find somewhere safe")
+        return true
+    }
+    print("That's against the law.")
+    return false
+}
+flyDrone(true)
+
+
+// Normal Closure
+//var rOnly = team.filter({ name in
+//    name.hasPrefix("R")
+//})
+//print(rOnly)
+
+
+//Trailing Closure
+//var rOnly = team.filter { name in
+//    name.hasPrefix("R")
+//}
+//print(rOnly)
+
+
+//Short hand syntax
+var rOnly = team.filter { $0.hasPrefix("R") }
+print(rOnly)
+
+
+//Normal Closure
+//let uppercaseTeam = team.map({ name in
+//    name.uppercased()
+//})
+//print(uppercaseTeam)
+
+
+//Trailing Closure
+//let uppercaseTeam = team.map { name in
+//    name.uppercased()
+//}
+//print(uppercaseTeam)
+
+
+//Short-hand syntax
+let uppercaseTeam = team.map { $0.uppercased() }
+print(uppercaseTeam)
+
+
+func animate(duration: Int, animations: () -> Void) {
+    print("Starting a \(duration) second animation")
+    animations()
+}
+
+animate(duration: 3, animations: {
+    print("Fade out an image")
+})
+
+animate(duration: 2) {
+    print("Fade in an image")
+}
+
+
+func makeArray(size: Int, using generator: () -> Int) -> [Int] {
+    var numbers = Array<Int>()
+    for _ in 0..<size {
+        let newNumber = generator()
+        numbers.append(newNumber)
+    }
+    return numbers
+}
+
+makeArray(size: 10) {
+    Int.random(in: 1...10)
+}
+
+
+func doImportantWork(first: () -> Void, second: () -> Void, third: () -> Void) {
+    print("Starting the first work")
+    first()
+    print("Starting the second work")
+    second()
+    print("Starting the third work")
+    third()
+    print("Work done!")
+}
+
+doImportantWork {
+    print("First work completed")
+} second: {
+    print("Second work completed")
+} third: {
+    print("Third work completed")
+}
+
