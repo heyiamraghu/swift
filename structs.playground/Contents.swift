@@ -82,3 +82,49 @@ struct Player {
 
 var oliver = Player(name: "Oliver J")
 oliver.score
+
+
+//Access Control
+
+struct BankAccount {
+    private(set) var funds = 0
+    
+    mutating func deposit(amount: Int) {
+        funds += amount
+    }
+    
+    mutating func withdrawal(amount: Int) -> Bool {
+        if funds >= amount {
+            funds -= amount
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+var myAccount = BankAccount()
+myAccount.deposit(amount: 1000)
+
+let result = myAccount.withdrawal(amount: 500)
+
+if result {
+    print("Amount withdrawn successfully")
+} else {
+    print("There's a problem")
+}
+
+
+//Static properties and methods
+
+struct School {
+    static var studentCount = 0
+    
+    static func add(student: String) {
+        print("\(student) joined the school")
+        studentCount += 1
+    }
+}
+
+School.add(student: "Raghu")
+School.studentCount
