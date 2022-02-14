@@ -88,3 +88,48 @@ struct Player {
 
 
 let guna = Player(playerName: "Guna", playerRank: 99, playerCountry: "Canada")
+
+
+struct BankAccount {
+    private(set) var funds = 0
+    
+    mutating func deposit(amount: Int) {
+        funds += amount
+        print("\(amount) is deposited successfully. You have \(funds) dollars in your account.")
+    }
+    
+    mutating func withdraw(amount: Int) -> Bool {
+        if amount < funds {
+            funds -= amount
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+
+var account = BankAccount()
+account.deposit(amount: 200)
+
+let success = account.withdraw(amount: 100)
+if success {
+    print("Amount withdrawn successfully")
+} else {
+    print("There was an issue!")
+}
+
+
+account.funds
+
+
+struct School {
+    static var studentCount = 0
+    static func add(studentName: String) {
+        print("\(studentName) is added to the class")
+        studentCount += 1
+    }
+}
+
+School.studentCount
+School.add(studentName: "Raghu")
