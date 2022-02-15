@@ -74,10 +74,75 @@ class Vehicle {
 }
 
 class Car: Vehicle {
-    var isConvertible: Bool = false
-    init(isElectric: Bool) {
+    var isConvertible: Bool
+    init(isElectric: Bool, isConvertible: Bool) {
+        self.isConvertible = isConvertible
         super.init(isElectric: isElectric)
     }
 }
 
 var teslaX = Car(isElectric: true, isConvertible: false)
+
+
+class User {
+    var username: String
+    
+    init(username: String) {
+        self.username = username
+        print("User: \(username) - I am alive!")
+    }
+    
+    deinit {
+        print("User: \(username) - I am dead")
+    }
+}
+
+//var user1 = User()
+//var user2 = user1
+//user2.username = "unknown"
+//
+//print(user1.username)
+//print(user2.username)
+
+let users = ["kane", "liam", "eoin", "wade"]
+
+for user in users {
+    let userFromClass = User(username: user)
+    print("User: \(userFromClass.username) - I am in control!")
+}
+
+
+//Optionals
+
+let opposites = ["Mario": "Wario", "Luigi": "Waluigi"]
+let peachOpposite = opposites["Peach"]
+print(peachOpposite)
+
+
+if let marioOpposite = opposites["Mario"] {
+    print(marioOpposite)
+}
+
+
+func printSquare(of number: Int?) {
+    guard let number = number else {
+        print("Missing number")
+        return
+    }
+    print("\(number) x \(number) is \(number * number)")
+}
+
+printSquare(of: nil)
+printSquare(of: 5)
+printSquare(of: nil)
+
+let teams = ["CSK", "KKR", "DC", "SRH"]
+let random = teams.randomElement() ?? "Empty Array"
+
+let actorsAndMovies = [
+    "Bigil": "Vijay",
+    "Basha": "Rajini",
+    "VTV": "Simbu"
+]
+
+let hero = actorsAndMovies["Muthu"] ?? "No such movie"
